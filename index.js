@@ -184,6 +184,9 @@ async function main () {
     for (const commit of matchingCommits) {
       const scope = commit.scope ? `**${commit.scope}**: ` : ''
       console.log(commit)
+      // get the commit message from the commit body
+      const commitMessage = commit?.body.split('\n')[0]
+      console.log(commitMessage)
       const subject = buildSubject({
         writeToFile,
         subject: commit.subject,
