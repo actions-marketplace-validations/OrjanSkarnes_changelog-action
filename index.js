@@ -86,10 +86,6 @@ async function main () {
   const latestTag = _.get(tagsRaw, 'repository.refs.nodes[0]')
   const previousTag = _.get(tagsRaw, 'repository.refs.nodes[1]')
 
-  core.info(`Latest tag: ${latestTag.name}`)
-  core.info(`Previous tag: ${previousTag.name}`)
-  core.info(`Owner: ${owner}`)
-
   if (!latestTag) {
     return core.setFailed('Couldn\'t find the latest tag. Make sure you have an existing tag already before creating a new one.')
   }
@@ -158,7 +154,7 @@ async function main () {
           })
         }
       }
-      core.info(`[OK] Commit ${commit.sha} of type ${cAst.type} - ${cAst.subject}`)
+      core.info(`[OK] Commit ${commit.sha} of type ${cAst.type} - ${cAst.subject} - ${commit.text}`)
     } catch (err) {
       core.info(`[INVALID] Skipping commit ${commit.sha} as it doesn't follow conventional commit format.`)
     }
