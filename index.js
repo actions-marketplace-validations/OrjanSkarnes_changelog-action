@@ -86,6 +86,10 @@ async function main () {
   const latestTag = _.get(tagsRaw, 'repository.refs.nodes[0]')
   const previousTag = _.get(tagsRaw, 'repository.refs.nodes[1]')
 
+  core.info('Latest tag: ' + latestTag.name)
+  core.info('Previous tag: ' + previousTag.name)
+  core.info('Tag', tag.name)
+
   if (!latestTag) {
     return core.setFailed('Couldn\'t find the latest tag. Make sure you have an existing tag already before creating a new one.')
   }
@@ -94,7 +98,6 @@ async function main () {
   }
 
   if (latestTag.name !== tag) {
-    core.setFailed(tag)
     return core.setFailed('Provided tag doesn\'t match latest tag.')
   }
 
