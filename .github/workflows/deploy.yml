@@ -85,4 +85,4 @@ jobs:
         uses: ./
         with:
           token: ${{ github.token }}
-          tag: ${{ env.GITHUB_REF_NAME }}
+          tag: ${{ github.ref_name }}
