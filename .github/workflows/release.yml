@@ -1,0 +1,26 @@
+name: "Release from tag"
+# Defines when this build file will run.
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  release-from-tag:
+    needs: [ release-from-tag, create-pr-to-argo-repo ]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: (local) Checkout Code
+        uses: actions/checkout@v2
+        if: ${{ always() }}
+        with:
+          path: changelog-action
+
+      - name: (local) Update CHANGELOG
+        if: ${{ always() }}
+        uses: ./
+        with:
+          token: ${{ github.token }}
+          tag: ${{ github.ref_name }}
