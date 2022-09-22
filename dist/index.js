@@ -26740,7 +26740,8 @@ function getTasks({ commitMsg, issuePrefix, jiraBrowseUrl}) {
   }
   if (tasks.length > 0) {
     final += "(issues: "
-    tasks.forEach(task => final += `[@${task}](${jiraBrowseUrl}/${task})`)
+    tasks.forEach(task => final += `[${task}](${jiraBrowseUrl}/${task})`)
+    final += ")"
   }
   return final
 }
@@ -26757,6 +26758,9 @@ async function main () {
   const owner = github.context.repo.owner
   const repo = github.context.repo.repo
   const currentISODate = (new Date()).toISOString().substring(0, 10)
+
+  core.info('IssuePrefix: ' + issuePrefix)
+  core.info('jiraBrowseUrl: ' + jiraBrowseUrl)
 
   // GET LATEST + PREVIOUS TAGS
 
