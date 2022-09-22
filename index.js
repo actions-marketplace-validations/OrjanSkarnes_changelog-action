@@ -154,7 +154,7 @@ async function main () {
           })
         }
       }
-      core.info(`[OK] Commit ${commit.sha} of type ${cAst.type} - ${cAst.subject} - ${commit.text}`)
+      core.info(`[Donky] Commit ${commit.sha} of type ${cAst.type} - ${cAst.subject} - ${commit.commit.message} -${cAst.body}`)
     } catch (err) {
       core.info(`[INVALID] Skipping commit ${commit.sha} as it doesn't follow conventional commit format.`)
     }
