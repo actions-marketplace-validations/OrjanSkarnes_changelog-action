@@ -13,7 +13,7 @@ jobs:
         if: ${{ !env.ACT }}
         with:
           fetch-depth: 0
-          
+
       - name: Get Next Version
         id: semver
         uses: ietf-tools/semver-action@v1
@@ -21,10 +21,9 @@ jobs:
         with:
           token: ${{ github.token }}
           branch: main
-          
+
       - name: Create Draft Release
         uses: ncipollo/release-action@v1
-        if: ${{ !env.ACT }}
         with:
           prerelease: true
           draft: false
@@ -52,7 +51,7 @@ jobs:
           name: ${{ steps.semver.outputs.next }}
           body: ${{ steps.changelog.outputs.changes }}
           token: ${{ github.token }}
-          
+
       - name: Create Release (Major-only)
         if: ${{ !env.ACT }}
         uses: ncipollo/release-action@v1
