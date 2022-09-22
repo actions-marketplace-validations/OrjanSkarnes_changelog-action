@@ -8,13 +8,12 @@ on:
 jobs:
   release-from-tag:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: (local) Checkout Code
         uses: actions/checkout@v2
         if: ${{ always() }}
         with:
+          fetch-depth: 0
           path: changelog-action
 
       - name: (local) Update CHANGELOG
