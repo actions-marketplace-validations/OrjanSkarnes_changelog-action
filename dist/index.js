@@ -26729,12 +26729,30 @@ function buildSubject ({ writeToFile, subject, author, authorUrl, owner, repo })
   return final
 }
 
+function getTasks({ commitMsg, issuePrefix, jiraBrowseUrl}) {
+  let tasks = []
+  let final = ""
+  if (commitMsg) {
+    tasks = commitMsg.match(/\d+/g)
+    if (tasks.length > 0) {
+      tasks.map(issue => `${issuePrefix}-${issue}`)
+    }
+  }
+  if (tasks.length > 0) {
+    final += "(issues: "
+    tasks.forEach(task => final += `[@${task}](${jiraBrowseUrl}/${task})`)
+  }
+  return final
+}
+
 async function main () {
   const token = core.getInput('token')
   const tag = core.getInput('tag')
   const excludeTypes = (core.getInput('excludeTypes') || '').split(',').map(t => t.trim())
   const writeToFile = core.getBooleanInput('writeToFile')
   const useGitmojis = core.getBooleanInput('useGitmojis')
+  const issuePrefix = core.getInput('issuePrefix')
+  const jiraBrowseUrl = core.getInput('jiraBrowseUrl')
   const gh = github.getOctokit(token)
   const owner = github.context.repo.owner
   const repo = github.context.repo.repo
@@ -26832,7 +26850,6 @@ async function main () {
         }
       }
       core.info(`[OK] Commit ${commit.sha} of type ${cAst.type} - ${cAst.subject} - ${cAst.body}`)
-      core.info(commit.commit.message)
     } catch (err) {
       core.info(`[INVALID] Skipping commit ${commit.sha} as it doesn't follow conventional commit format.`)
     }
@@ -26869,7 +26886,15 @@ async function main () {
         owner,
         repo
       })
-      changes.push(`- [\`${commit.sha.substring(0, 7)}\`](${commit.url}) - ${scope}${subject}`)
+      let tasks = undefined
+      if (issuePrefix && jiraBrowseUrl) {
+        tasks = getTasks({
+          commitMsg: commit.commit.message,
+          issuePrefix,
+          jiraBrowseUrl
+        })
+      }
+      changes.push(`- [\`${commit.sha.substring(0, 7)}\`](${commit.url}) - ${scope}${subject}${tasks}`)
     }
     idx++
   }

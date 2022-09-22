@@ -84,5 +84,7 @@ jobs:
         if: ${{ env.ACT }}
         uses: ./
         with:
+          issuePrefix: 'SL'
+          jiraBrowseUrl: https://jira.finods.com/
           token: ${{ github.token }}
           tag: ${{ github.ref_name }}
