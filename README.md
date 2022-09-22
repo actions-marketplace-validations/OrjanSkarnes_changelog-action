@@ -1,4 +1,4 @@
-# Changelog from Conventional Commits - Github Action
+# Changelog wit Jira links - Github Action
 
 This GitHub Action automatically generates a changelog based on all the [Conventional Commits](https://www.conventionalcommits.org) between the latest tag and the previous tag and allows for you to link tasks to jira.
 

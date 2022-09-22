@@ -1,5 +1,5 @@
-name: 'Changelog from Conventional Commits'
-description: 'Generate and update the CHANGELOG from conventional commits since last tag'
+name: 'Changelog wit Jira links'
+description: 'Generate and update the CHANGELOG with jira links from conventional commits since last tag'
 author: Nicolas Giard
 inputs:
   token:
