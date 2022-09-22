@@ -7,7 +7,6 @@ on:
 
 jobs:
   release-from-tag:
-    needs: [ release-from-tag, create-pr-to-argo-repo ]
     runs-on: ubuntu-latest
     permissions:
       contents: write
