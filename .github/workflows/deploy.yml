@@ -81,7 +81,7 @@ jobs:
           path: changelog-action
 
       - name: (local) Update CHANGELOG
-        if: ${{ env.ACT }}
+        if: always()
         uses: ./
         with:
           token: ${{ github.token }}
