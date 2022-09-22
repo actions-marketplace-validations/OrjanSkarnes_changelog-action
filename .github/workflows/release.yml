@@ -23,7 +23,7 @@ jobs:
         uses: ./
         with:
           issuePrefix: 'SL'
-          jiraBrowseUrl: https://jira.finods.com/
+          jiraBrowseUrl: https://jira.finods.com/browse
           token: ${{ github.token }}
           tag: ${{ github.ref_name }}
 

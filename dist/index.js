@@ -26740,7 +26740,7 @@ function getTasks({ commitMsg, issuePrefix, jiraBrowseUrl}) {
   }
   if (tasks.length > 0) {
     final += "(issues: "
-    tasks.forEach(task => final += `[${task}](${jiraBrowseUrl}/browse/${task})`)
+    tasks.forEach(task => final += `[${task}](${jiraBrowseUrl}/${task})`)
     final += ")"
   }
   return final

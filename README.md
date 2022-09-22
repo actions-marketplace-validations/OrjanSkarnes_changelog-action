@@ -6,6 +6,7 @@ This GitHub Action automatically generates a changelog based on all the [Convent
 
 - Generates the CHANGELOG changes in Markdown format
 - Turns PR ids into links and add the PR author.
+- Turns Jira ids into links (The pull request can only contain number in tasks e.g JIRA-1222, JIRA-2221) .
 - Prepends a shortened commit SHA ID to the commit for quick access.
 - `BREAKING CHANGE` notes are added at the bottom of the changelog version along with the related commit.
 - Automatically injects the changes into the CHANGELOG.md file or creates it if it doesn't exist yet. *(optional)*
@@ -34,6 +35,8 @@ jobs:
         id: changelog
         uses: OrjanSkarnes/changelog-action@v1
         with:
+          issuePrefix: # Prefix for jira issue, e.g. "JIRA"
+          jiraBrowseUrl: # Url to jira, e.g. "https://jira.example.com/browse"
           token: ${{ github.token }}
           tag: ${{ github.ref_name }}
 
@@ -60,8 +63,8 @@ jobs:
 * `excludeTypes`: A comma-separated list of commit types you want to exclude from the changelog (e.g. `doc,chore,perf`) - **Optional** - Default: `build,docs,other,style`
 * `writeToFile`: Should CHANGELOG.md be updated with latest changelog - **Optional** - Default: `true`
 * `useGitmojis`: Should type headers be prepended with their related gitmoji - **Optional** - Default: `true`
-* `jiraBrowseUrl`: Jira url u want the issues to be linked to - **Optional** 
-* `issuePrefix`: Jira issue prefix - **Optional**
+* `jiraBrowseUrl`: Jira browse url you want the issues to be linked to  (e.g https://jira.example.com/browse ) - **Optional** 
+* `issuePrefix`: Jira issue prefix (e.g if this is your issue JIRA-2096 u want to use JIRA as prefix) - **Optional**
 
 ## Outputs
 * `changes`: Generated CHANGELOG changes for the latest tag, without the version / date header (for use in GitHub Releases).
