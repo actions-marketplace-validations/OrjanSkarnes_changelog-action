@@ -86,10 +86,9 @@ async function main () {
   const latestTag = _.get(tagsRaw, 'repository.refs.nodes[0]')
   const previousTag = _.get(tagsRaw, 'repository.refs.nodes[1]')
 
-  core.info('Latest tag: ' + latestTag.name)
-  core.info('Previous tag: ' + previousTag.name)
-  core.info('Tag', tag.name)
-  core.info('owner', owner)
+  core.info(`Latest tag: ${latestTag.name}`)
+  core.info(`Previous tag: ${previousTag.name}`)
+  core.info(`Owner: ${owner}`)
 
   if (!latestTag) {
     return core.setFailed('Couldn\'t find the latest tag. Make sure you have an existing tag already before creating a new one.')
@@ -188,9 +187,8 @@ async function main () {
     changes.push(useGitmojis ? `### ${type.icon} ${type.header}` : `### ${type.header}`)
     for (const commit of matchingCommits) {
       const scope = commit.scope ? `**${commit.scope}**: ` : ''
-      console.log(commit)
-      // get the commit message from the commit body
-      console.log(commit?.body.split('\n'))
+      core.info(`${commit}`)
+      core.info(commit?.body.split('\n'))
       const subject = buildSubject({
         writeToFile,
         subject: commit.subject,
