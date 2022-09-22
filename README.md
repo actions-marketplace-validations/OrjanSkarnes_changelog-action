@@ -32,7 +32,7 @@ jobs:
 
       - name: Update CHANGELOG
         id: changelog
-        uses: Requarks/changelog-action@v1
+        uses: OrjanSkarnes/changelog-action@v1
         with:
           token: ${{ github.token }}
           tag: ${{ github.ref_name }}
