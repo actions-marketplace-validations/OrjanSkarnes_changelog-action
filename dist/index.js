@@ -26835,7 +26835,8 @@ async function main () {
         sha: commit.sha,
         url: commit.html_url,
         author: commit.author.login,
-        authorUrl: commit.author.html_url
+        authorUrl: commit.author.html_url,
+        message: commit.commit.message
       })
       for (const note of cAst.notes) {
         if (note.title === 'BREAKING CHANGE') {
@@ -26889,7 +26890,7 @@ async function main () {
       let tasks = undefined
       if (issuePrefix && jiraBrowseUrl) {
         tasks = getTasks({
-          commitMsg: commit.commit.message,
+          commitMsg: commit.message,
           issuePrefix,
           jiraBrowseUrl
         })
