@@ -1,6 +1,6 @@
 # Changelog from Conventional Commits - Github Action
 
-This GitHub Action automatically generates a changelog based on all the [Conventional Commits](https://www.conventionalcommits.org) between the latest tag and the previous tag.
+This GitHub Action automatically generates a changelog based on all the [Conventional Commits](https://www.conventionalcommits.org) between the latest tag and the previous tag and allows for you to link tasks to jira.
 
 ## Features
 
@@ -61,7 +61,7 @@ jobs:
 * `writeToFile`: Should CHANGELOG.md be updated with latest changelog - **Optional** - Default: `true`
 * `useGitmojis`: Should type headers be prepended with their related gitmoji - **Optional** - Default: `true`
 * `jiraBrowseUrl`: Jira url u want the issues to be linked to - **Optional** 
-* `issuePrefix`: Jira issue prefix - **Optional** 
+* `issuePrefix`: Jira issue prefix - **Optional**
 
 ## Outputs
 * `changes`: Generated CHANGELOG changes for the latest tag, without the version / date header (for use in GitHub Releases).
