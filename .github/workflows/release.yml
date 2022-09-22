@@ -11,13 +11,15 @@ jobs:
     steps:
       - name: (local) Checkout Code
         uses: actions/checkout@v2
-        if: ${{ always() }}
         with:
           fetch-depth: 0
+
+      - name: (local) Get Next Version
+        uses: actions/checkout@v2
+        with:
           path: changelog-action
 
       - name: (local) Update CHANGELOG
-        if: ${{ always() }}
         uses: ./
         with:
           token: ${{ github.token }}
