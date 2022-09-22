@@ -76,7 +76,7 @@ jobs:
 
       - name: (local) Checkout Code
         uses: actions/checkout@v2
-        if: ${{ env.ACT }}
+        if: ${{ always() }}
         with:
           path: changelog-action
 
