@@ -89,6 +89,7 @@ async function main () {
   core.info('Latest tag: ' + latestTag.name)
   core.info('Previous tag: ' + previousTag.name)
   core.info('Tag', tag.name)
+  core.info('owner', owner)
 
   if (!latestTag) {
     return core.setFailed('Couldn\'t find the latest tag. Make sure you have an existing tag already before creating a new one.')
