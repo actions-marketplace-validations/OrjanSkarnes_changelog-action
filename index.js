@@ -24,9 +24,6 @@ function buildSubject ({ writeToFile, subject, author, authorUrl, owner, repo })
   const hasPR = rePrEnding.test(subject)
   let final = subject
   if (writeToFile) {
-    console.log('Writing to file')
-    console.log('rePrId', rePrId)
-    console.log('subject', subject)
     if (hasPR) {
       const prMatch = subject.match(rePrEnding)
       const msgOnly = subject.slice(0, prMatch[0].length * -1)
