@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.0] - 2022-09-23
+### :sparkles: New Features
+- [`ce56b88`](https://github.com/OrjanSkarnes/changelog-action/commit/ce56b889b8a91714b3b07e20ea154327712fac56) - **changelog**: check if workflow inputs are undefined and display jira issues better *(commit by [@OrjanSkarnes](https://github.com/OrjanSkarnes))*[ [SL-1603](https://jira.finods.com/browse/SL-1603) ]
+
+
 ## [v1.3.2] - 2022-05-06
 ### :bug: Bug Fixes
 - [`66a4bf2`](https://github.com/requarks/changelog-action/commit/66a4bf2663a93f4271c97e78ec54859e0b40ff95) - empty changelog warning call *(commit by [@NGPixel](https://github.com/NGPixel))*
@@ -55,3 +60,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [v1.3.1]: https://github.com/requarks/changelog-action/compare/v1.3.0...v1.3.1
 [v1.3.2]: https://github.com/requarks/changelog-action/compare/v1.3.1...v1.3.2
+[v1.1.0]: https://github.com/OrjanSkarnes/changelog-action/compare/0.9.1...v1.1.0
