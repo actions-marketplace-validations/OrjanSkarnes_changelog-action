@@ -26739,9 +26739,9 @@ function getTasks({ commitMsg, issuePrefix, jiraBrowseUrl}) {
     }
   }
   if (tasks.length > 0) {
-    final += "(issues: "
-    tasks.forEach(task => final += `[${task}](${jiraBrowseUrl}/${task})`)
-    final += ")"
+    final += "[ "
+    tasks.forEach(task => final += `[${task}](${jiraBrowseUrl}/${task}) `)
+    final += "]"
   }
   return final
 }
@@ -26892,7 +26892,7 @@ async function main () {
         repo
       })
       let tasks = undefined
-      if (issuePrefix && jiraBrowseUrl) {
+      if (!!issuePrefix && !!jiraBrowseUrl) {
         tasks = getTasks({
           commitMsg: commit.message,
           issuePrefix,
