@@ -26692,7 +26692,7 @@ const types = [
   { types: ['test', 'tests'], header: 'Tests', icon: ':white_check_mark:' },
   { types: ['build', 'ci'], header: 'Build System', icon: ':construction_worker:' },
   { types: ['doc', 'docs'], header: 'Documentation Changes', icon: ':memo:' },
-  { types: ['style'], header: 'Code Style Changes', icon: ':art:' },
+  { types: ['style', 'design'], header: 'Code Style Changes', icon: ':art:' },
   { types: ['chore'], header: 'Chores', icon: ':wrench:' },
   { types: ['other'], header: 'Other Changes', icon: ':flying_saucer:' }
 ]

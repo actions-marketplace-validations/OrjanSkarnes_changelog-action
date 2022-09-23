@@ -11,7 +11,7 @@ inputs:
   excludeTypes:
     description: Types to exclude from the Changelog
     required: false
-    default: build,docs,other,style
+    default: build,docs,other
   writeToFile:
     description: Should CHANGELOG.md be updated with latest changelog
     required: false
