@@ -26729,16 +26729,14 @@ function buildSubject ({ writeToFile, subject, author, authorUrl, owner, repo })
   return final
 }
 
-function getTasks({ commitMsg, issuePrefix, jiraBrowseUrl}) {
+function getTasks({ commitMsg, jiraBrowseUrl}) {
   let tasks = []
   let final = ""
   if (commitMsg) {
-    tasks = commitMsg.match(/\d+/g)
-    if (tasks.length > 0) {
-      tasks = tasks.map(issue => `${issuePrefix}-${issue}`)
-    }
+    tasks = commitMsg.match(/\S[^#]*?(\d+)/g).map(task => task.slice(1))
   }
   if (tasks.length > 0) {
+    core.info(`Tasks: ${tasks}`)
     final += "[ "
     tasks.forEach(task => final += `[${task}](${jiraBrowseUrl}/${task}) `)
     final += "]"
@@ -26752,14 +26750,12 @@ async function main () {
   const excludeTypes = (core.getInput('excludeTypes') || '').split(',').map(t => t.trim())
   const writeToFile = core.getBooleanInput('writeToFile')
   const useGitmojis = core.getBooleanInput('useGitmojis')
-  const issuePrefix = core.getInput('issuePrefix')
   const jiraBrowseUrl = core.getInput('jiraBrowseUrl')
   const gh = github.getOctokit(token)
   const owner = github.context.repo.owner
   const repo = github.context.repo.repo
   const currentISODate = (new Date()).toISOString().substring(0, 10)
 
-  core.info('IssuePrefix: ' + issuePrefix)
   core.info('jiraBrowseUrl: ' + jiraBrowseUrl)
 
   // GET LATEST + PREVIOUS TAGS
@@ -26892,10 +26888,9 @@ async function main () {
         repo
       })
       let tasks = undefined
-      if (!!issuePrefix && !!jiraBrowseUrl) {
+      if (!!jiraBrowseUrl) {
         tasks = getTasks({
           commitMsg: commit.message,
-          issuePrefix,
           jiraBrowseUrl
         })
       }
