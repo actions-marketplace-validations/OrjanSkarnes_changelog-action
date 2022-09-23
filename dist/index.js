@@ -26733,9 +26733,10 @@ function getTasks({ commitMsg, jiraBrowseUrl}) {
   let tasks = []
   let final = ""
   if (commitMsg) {
-    tasks = commitMsg.match(/\S[^#]*?(\d+)/g)?.map(task => task.slice(1))
+    tasks = commitMsg.match(/\S[^#]*?(\d+)/g)
   }
-  if (tasks?.length > 0) {
+  if (tasks.length > 0) {
+    tasks = tasks.map(task => task.slice(1))
     core.info(`Tasks: ${tasks}`)
     final += "[ "
     tasks.forEach(task => final += `[${task}](${jiraBrowseUrl}/${task}) `)
